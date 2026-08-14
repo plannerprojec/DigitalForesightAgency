@@ -1098,3 +1098,61 @@ a.fc-item:hover .fc-ic { background: var(--accent); border-color: var(--accent);
 
 /* Work grid: fill section width like other sections (height scales with 16:10) */
 .work-grid { max-width: none; gap: 1.75rem; }
+
+/* ==========================================================================
+   Interactive polish: floating hero mascot + hand-drawn accents
+   ========================================================================== */
+.hero-mascot { animation: floaty 5.5s ease-in-out infinite; will-change: transform; }
+@keyframes floaty {
+  0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+  50%      { transform: translateY(-16px) rotate(1.5deg); }
+}
+@media (prefers-reduced-motion: reduce) { .hero-mascot { animation: none; } }
+
+/* Hand-drawn squiggle accent under headings */
+.squiggle { display: block; width: 130px; height: 13px; margin-top: 12px; color: var(--accent2); }
+.squiggle.center { margin-left: auto; margin-right: auto; }
+.squiggle path { stroke-dasharray: 300; stroke-dashoffset: 300; }
+.reveal.in .squiggle path, .in > .squiggle path { animation: draw 0.9s ease forwards 0.2s; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) { .squiggle path { stroke-dashoffset: 0; animation: none; } }
+
+/* Floating accent dots in the hero */
+.hero-dot { position: absolute; border-radius: 9999px; pointer-events: none; z-index: 1; opacity: 0.9; }
+.hero-dot.d-a { width: 14px; height: 14px; background: var(--accent); top: 22%; right: 8%; animation: bob 4s ease-in-out infinite; }
+.hero-dot.d-b { width: 10px; height: 10px; background: var(--accent3); bottom: 26%; right: 40%; animation: bob 5.5s ease-in-out infinite 0.6s; }
+.hero-dot.d-c { width: 8px; height: 8px; background: var(--accent2); top: 30%; right: 46%; animation: bob 4.8s ease-in-out infinite 0.3s; }
+@keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@media (prefers-reduced-motion: reduce) { .hero-dot { animation: none; } }
+
+/* ==========================================================================
+   Blog: listing cards + article layout
+   ========================================================================== */
+.blog-grid { display: grid; grid-template-columns: 1fr; gap: 1.75rem; max-width: 1120px; margin: 0 auto; }
+.blog-card { background: #fff; border: 1px solid var(--gray-border); border-radius: 22px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.blog-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,0.1); }
+.blog-thumb { display: block; aspect-ratio: 16/10; overflow: hidden; background: var(--gray-bg); border-bottom: 1px solid var(--gray-border); }
+.blog-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.blog-card:hover .blog-thumb img { transform: scale(1.04); }
+.blog-body { padding: 1.5rem 1.75rem 1.75rem; display: flex; flex-direction: column; flex: 1; }
+.blog-cat { font-family: var(--font-display); font-weight: 700; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.6rem; }
+.blog-body h2 { font-size: 1.12rem; font-weight: 700; line-height: 1.3; color: var(--ink); margin-bottom: 0.6rem; }
+.blog-body h2 a:hover { color: var(--accent); }
+.blog-body p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; flex: 1; }
+.blog-meta { font-size: 0.76rem; color: var(--muted); margin-top: 1rem; font-weight: 500; }
+@media (min-width: 700px)  { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1040px) { .blog-grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* Article */
+.post-hero { max-width: 820px; margin: 0 auto; padding: calc(var(--nav-h) + 36px) var(--pad-x) 20px; }
+.post-cat { display: inline-block; font-family: var(--font-display); font-weight: 700; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.75rem; }
+.post-hero h1 { font-family: var(--font-display); font-weight: 800; letter-spacing: -1px; color: var(--black); font-size: clamp(1.9rem, 3.6vw, 2.85rem); line-height: 1.12; }
+.post-meta { color: var(--muted); font-size: 0.85rem; margin-top: 0.9rem; }
+.post-featured { max-width: 980px; margin: 1.25rem auto 2.5rem; padding: 0 var(--pad-x); }
+.post-featured img { width: 100%; height: auto; border-radius: 20px; border: 1px solid var(--gray-border); }
+.post .prose { max-width: 760px; margin: 0 auto; padding: 0 var(--pad-x) 1rem; }
+.prose blockquote { border-left: 4px solid var(--accent); background: var(--gray-bg); padding: 1.1rem 1.4rem; border-radius: 0 12px 12px 0; font-size: 1.05rem; line-height: 1.6; color: var(--ink); font-style: italic; margin: 1.9rem 0; }
+.prose ul li strong { color: var(--ink); }
+.post-figure { margin: 2rem 0; }
+.post-figure img { width: 100%; height: auto; border-radius: 16px; border: 1px solid var(--gray-border); background: var(--gray-bg); }
+.post-figure figcaption { text-align: center; font-size: 0.82rem; color: var(--muted); margin-top: 0.75rem; font-style: italic; }

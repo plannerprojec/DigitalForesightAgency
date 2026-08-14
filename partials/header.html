@@ -1,0 +1,58 @@
+<!--
+  SHARED HEADER PARTIAL (Phase 2). Copy into each new page's <body>.
+  Service links open popups on the homepage (needs js/modal.js + the .svc-details block);
+  on other pages they fall back to navigating to /#services.
+-->
+  <header class="site-header" id="site-header">
+    <a class="brand" href="/" aria-label="Digital Foresight Agency home">
+      <img src="/public/logo.png" alt="Digital Foresight Agency" width="152" height="35" />
+    </a>
+
+    <nav class="nav-primary" aria-label="Primary">
+      <ul class="nav-list">
+        <li class="has-dropdown">
+          <button class="nav-link" type="button" aria-expanded="false" aria-controls="services-menu" data-dropdown>
+            Services
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="dropdown" id="services-menu">
+            <a href="/#services" data-modal="website"><span class="dot"></span>Website Design &amp; Development</a>
+            <a href="/#services" data-modal="mobile-app"><span class="dot"></span>Mobile App Development</a>
+            <a href="/#services" data-modal="custom"><span class="dot"></span>Custom Web &amp; App Solutions</a>
+            <a href="/#services" data-modal="cms"><span class="dot"></span>CMS &amp; eCommerce</a>
+            <a href="/#services" data-modal="seo"><span class="dot"></span>Search Engine Optimization</a>
+            <a href="/#services" data-modal="geo-aeo"><span class="dot"></span>GEO &amp; AEO (AI Search)</a>
+            <a href="/#services" data-modal="redesign"><span class="dot"></span>Website Redesign &amp; CRO</a>
+            <a href="/#services" data-modal="ai"><span class="dot"></span>AI Chatbots &amp; Automation</a>
+            <a href="/#services" data-modal="branding"><span class="dot"></span>Graphic Design &amp; Branding</a>
+          </div>
+        </li>
+        <li><a class="nav-link" href="/#work">Work</a></li>
+        <li><a class="nav-link" href="/about/">About</a></li>
+        <!-- Pricing hidden for now -->
+        <li><a class="btn-dark" href="/#contact" style="padding:0.625rem 1.5rem;font-size:0.86rem;">Get a Free Quote</a></li>
+      </ul>
+    </nav>
+
+    <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" id="burger">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <p class="menu-label">Services</p>
+      <a href="/#services" data-modal="website">Website Design &amp; Development</a>
+      <a href="/#services" data-modal="mobile-app">Mobile App Development</a>
+      <a href="/#services" data-modal="custom">Custom Web &amp; App Solutions</a>
+      <a href="/#services" data-modal="cms">CMS &amp; eCommerce</a>
+      <a href="/#services" data-modal="seo">Search Engine Optimization</a>
+      <a href="/#services" data-modal="geo-aeo">GEO &amp; AEO (AI Search)</a>
+      <a href="/#services" data-modal="redesign">Website Redesign &amp; CRO</a>
+      <a href="/#services" data-modal="ai">AI Chatbots &amp; Automation</a>
+      <a href="/#services" data-modal="branding">Graphic Design &amp; Branding</a>
+      <hr />
+      <a href="/#work">Work</a>
+      <a href="/about/">About</a>
+      <!-- Pricing hidden for now -->
+      <a class="btn-dark" href="/#contact">Get a Free Quote</a>
+    </div>
+  </header>

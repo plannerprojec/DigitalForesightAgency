@@ -1,0 +1,13 @@
+{
+  "name": "Digital Foresight Agency",
+  "short_name": "Foresight",
+  "description": "US web design and SEO agency building websites that rank and convert.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#E8431A",
+  "icons": [
+    { "src": "/public/images/favicon-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/public/images/favicon-512x512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

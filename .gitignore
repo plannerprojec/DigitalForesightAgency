@@ -1,0 +1,11 @@
+# OS / editor junk
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+*.tmp
+
+# Temp build artifacts (not part of the site)
+.build-logos/
+.p2-append.css
+node_modules/

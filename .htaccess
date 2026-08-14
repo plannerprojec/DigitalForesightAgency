@@ -1,0 +1,76 @@
+# ==========================================================================
+# Digital Foresight Agency, Apache config for Hostinger shared hosting
+# Force HTTPS, canonical www, cache static assets, compress, security headers
+# ==========================================================================
+
+# ---- Force HTTPS + canonical www ----
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Force HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Force www (canonical). Comment this block out if you prefer non-www.
+  RewriteCond %{HTTP_HOST} !^www\. [NC]
+  RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Serve clean folder URLs: /about/ -> /about/index.html (handled by DirectoryIndex)
+</IfModule>
+
+DirectoryIndex index.html
+
+# ---- Compression ----
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript \
+    application/javascript application/json application/xml image/svg+xml \
+    application/x-font-ttf font/woff font/woff2
+</IfModule>
+
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/css text/javascript \
+    application/javascript application/json application/xml image/svg+xml
+</IfModule>
+
+# ---- Cache headers ----
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+  # Long cache for versioned/static assets
+  <FilesMatch "\.(css|js|jpg|jpeg|png|webp|svg|ico|woff2|woff)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # No cache for HTML so content updates are picked up
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+
+  # ---- Security headers ----
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+  # Enable HSTS only once you are confident HTTPS is permanent:
+  # Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+</IfModule>
+
+# ---- Custom error page (add in Phase 2 when 404.html exists) ----
+# ErrorDocument 404 /404.html
+
+# ---- Keep internal files out of the public site ----
+<FilesMatch "\.md$">
+  Require all denied
+</FilesMatch>
+RedirectMatch 404 ^/partials/.*$

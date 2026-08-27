@@ -950,8 +950,16 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
 .form-note.error { color: #ff8a6a; }
 .form-note.sending { color: rgba(255,255,255,0.6); }
 .form-note.success { color: var(--accent3); }
-@media (min-width: 560px)  { .form-row { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 380px)  { .form-row { grid-template-columns: 1fr 1fr; gap: 0.75rem; } }
 @media (min-width: 1024px) { .contact-grid { grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: start; } }
+
+/* Tighter mobile gutters + a less vertical form */
+@media (max-width: 600px) {
+  :root { --pad-x: 18px; }
+  .contact-panel { padding: 2rem 1.1rem; border-radius: 24px; }
+  .quote-form { padding: 1.2rem 1rem; border-radius: 16px; }
+  .form-row { margin-bottom: 0.8rem; }
+}
 
 /* ---- Inner-page hero + breadcrumb (About, Case Studies) ---- */
 .page-hero { background: var(--gray-bg); padding: calc(var(--nav-h) + 40px) var(--pad-x) 56px; text-align: center; }

@@ -443,24 +443,51 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
    Metrics band
    ========================================================================== */
 .metrics {
-  background: var(--black); padding: 4rem var(--pad-x);
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;
+  background: var(--black); padding: 4.5rem var(--pad-x);
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem;
 }
-.metric { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.metric {
+  --mc: var(--accent);
+  position: relative; overflow: hidden;
+  text-align: center; display: flex; flex-direction: column; align-items: center;
+  padding: 2.5rem 1.25rem 2.25rem;
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 22px;
+  transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+}
+.metric::before {
+  content: ''; position: absolute; left: 50%; top: -60px; transform: translateX(-50%);
+  width: 190px; height: 190px; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, var(--mc) 0%, transparent 70%);
+  opacity: 0.14; filter: blur(6px); transition: opacity .35s ease;
+}
+.metric:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--mc) 45%, transparent);
+  box-shadow: 0 24px 50px rgba(0,0,0,0.45);
+}
+.metric:hover::before { opacity: 0.4; }
 .metric .m-ic {
+  position: relative; z-index: 1;
   display: inline-flex; align-items: center; justify-content: center;
-  width: 46px; height: 46px; margin-bottom: 16px; border-radius: 13px;
-  background: rgba(232,67,26,0.12); color: var(--accent);
-  border: 1px solid rgba(232,67,26,0.22);
+  width: 54px; height: 54px; margin-bottom: 20px; border-radius: 15px;
+  background: color-mix(in srgb, var(--mc) 15%, transparent);
+  color: var(--mc);
+  border: 1px solid color-mix(in srgb, var(--mc) 32%, transparent);
 }
-.metric .m-ic svg { width: 22px; height: 22px; }
+.metric .m-ic svg { width: 26px; height: 26px; }
 .metric .num {
+  position: relative; z-index: 1;
   font-family: var(--font-display); font-weight: 800; font-size: 3rem;
   line-height: 1; letter-spacing: -2px; color: #fff;
 }
-.metric .num .suf { color: var(--accent); }
+.metric .num .suf { color: var(--mc); }
 .metric .num .rating { color: #fff; }
-.metric .lbl { font-size: 0.82rem; color: rgba(255,255,255,0.4); font-weight: 500; margin-top: 8px; }
+.metric .lbl {
+  position: relative; z-index: 1;
+  font-size: 0.82rem; color: rgba(255,255,255,0.55); font-weight: 500; margin-top: 10px;
+}
 
 /* ==========================================================================
    Why section + SEO tracker
